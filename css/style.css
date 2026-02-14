@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  background-color: beige;
+}
+
+header {
+  background: #222;
+  color: beige;
+  padding: 15px;
+}
+
+nav a {
+  color: beige;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+main, footer {
+  padding: 15px;
+  color: brown;
+}
+
+section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.cartBox {
+  margin-top: 10px;
+  border: 1px dashed #aaa;
+  padding: 10px;
+}
+
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@media (max-width: 600px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: block;
+    padding: 10px;
+    background: #333;
+    border-radius: 5px;
+  }
+
+  section {
+    padding: 12px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  button,
+  .buttonLink {
+    width: 100%;
+    padding: 12px;
+  }
+
+  label {
+    font-size: 14px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 14px;
+  }
+}

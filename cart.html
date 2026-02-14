@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BrewLab Coffee - Cart</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  line-height: 1.5;
+}
+
+header {
+  background: #222;
+  color: beige;
+  padding: 15px;
+}
+
+nav a {
+  color: beige;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+main {
+  padding: 15px;
+}
+
+section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+button, .buttonLink {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 10px;
+  cursor: pointer;
+  border: 1px solid #666;
+  background: #f2f2f2;
+  text-decoration: none;
+  color: black;
+}
+
+.cartBox {
+  margin-top: 10px;
+  border: 1px dashed #aaa;
+  padding: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+#message {
+  margin-top: 10px;
+  font-weight: bold;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+<body>
+
+<header>
+    <div class="container">
+  <h1>BrewLab Coffee ☕</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="cart.html">Cart (<span class="cartCount">0</span>)</a>
+    <a href="checkout.html">Checkout</a>
+  </nav>
+</header>
+
+<main>
+  <div class="container">
+    <section>
+    <h2>Your Cart</h2>
+
+    <p><strong>Items:</strong> <span id="cartCount">0</span></p>
+    <p><strong>Total:</strong> €<span id="cartTotal">0.00</span></p>
+
+    <div id="cartItems" class="cartBox"></div>
+
+    <button id="clearBtn">Clear Cart</button>
+    <a class="buttonLink" href="checkout.html">Go to Checkout</a>
+</section>
+    </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 BrewLab. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
