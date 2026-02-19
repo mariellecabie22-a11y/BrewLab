@@ -91,6 +91,14 @@ label {
   margin: 0 auto;
   padding: 0 15px;
 }
+.menuIcon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 6px;
+  z-index: -1;
+  position:absolute;
+}
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
@@ -117,7 +125,18 @@ label {
     <h2>Menu</h2>
     <p>Click “Add” to put an item in your cart.</p>
    
-    <div id="menuItems" class="grid"></div>
+    <div id="menuItems" class="grid">
+
+      <div class="card">
+  <h3>
+    Latte
+  </h3>
+  <img src="Images/latte.jpg" class="menuIcon" alt="Latte">
+  <p>€3.50</p>
+  <button>Add</button>
+</div>
+
+    </div>
 
 </div>
 
