@@ -47,7 +47,6 @@ const checkoutForm = document.getElementById("checkoutForm");
 const nameInput = document.getElementById("nameInput");
 const emailInput = document.getElementById("emailInput");
 const messageP = document.getElementById("message");
-
 const checkoutTotalSpan = document.getElementById("checkoutTotal");
 
 function updateNavCartCount() {
@@ -87,18 +86,17 @@ function renderCart() {
     cartItemsDiv.appendChild(itemDiv);
   }
 
-  function renderCheckoutTotal() {
+  cartCountSpan.textContent = cart.length;
+  cartTotalSpan.textContent = total.toFixed(2);
+}
+
+function renderCheckoutTotal() {
   if (!checkoutTotalSpan) return;
 
   const cart = getCart();
   const total = cart.reduce((sum, item) => sum + item.price, 0);
 
   checkoutTotalSpan.textContent = total.toFixed(2);
-}
-
-
-  cartCountSpan.textContent = cart.length;
-  cartTotalSpan.textContent = total.toFixed(2);
 }
 
 function removeFromCart(index) {
