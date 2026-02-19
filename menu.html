@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse BrewLab Coffee's menu featuring lattes, cappuccinos, americanos, and fresh pastries available to order online." />
   <title>BrewLab Coffee - Menu</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -91,14 +92,21 @@ label {
   margin: 0 auto;
   padding: 0 15px;
 }
-.menuIcon {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-  margin-right: 6px;
-  z-index: -1;
-  position:absolute;
+.menuTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 0;
 }
+
+.menuIcon {
+  width: 79px;
+  height: 79px;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
@@ -117,6 +125,7 @@ label {
     <a href="cart.html">Cart (<span class="cartCount">0</span>)</a>
     <a href="checkout.html">Checkout</a>
   </nav>
+  </div>
 </header>
 
 <main>
@@ -125,18 +134,7 @@ label {
     <h2>Menu</h2>
     <p>Click “Add” to put an item in your cart.</p>
    
-    <div id="menuItems" class="grid">
-
-      <div class="card">
-  <h3>
-    Latte
-  </h3>
-  <img src="Images/latte.jpg" class="menuIcon" alt="Latte">
-  <p>€3.50</p>
-  <button>Add</button>
-</div>
-
-    </div>
+    <div id="menuItems" class="grid"></div>
 
 </div>
 

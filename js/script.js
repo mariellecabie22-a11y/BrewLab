@@ -1,9 +1,31 @@
 const products = [
-  { id: 1, name: "Latte", price: 3.50, },
-  { id: 2, name: "Cappuccino", price: 3.40 },
-  { id: 3, name: "Americano", price: 2.90 },
-  { id: 4, name: "Croissant", price: 2.60 }
+  { id: 1, name: "Latte", price: 3.50, icon: "Images/latte.png" },
+  { id: 2, name: "Cappuccino", price: 3.40, icon: "Images/cappuccino.png" },
+  { id: 3, name: "Americano", price: 2.90, icon: "Images/americano.png" },
+  { id: 4, name: "Croissant", price: 2.60, icon: "Images/croissant.png" }
 ];
+
+function renderMenu() {
+  if (!menuItemsDiv) return;
+
+  menuItemsDiv.innerHTML = "";
+
+  for (let product of products) {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3 class="menuTitle">
+        <span>${product.name}</span>
+      </h3>
+      <img class="menuIcon" src="${product.icon}" alt="${product.name} icon">
+      <p>€${product.price.toFixed(2)}</p>
+      <button onclick="addToCart(${product.id})">Add</button>
+    `;
+
+    menuItemsDiv.appendChild(card);
+  }
+}
 
 function getCart() {
   const saved = localStorage.getItem("cart");
@@ -26,29 +48,12 @@ const nameInput = document.getElementById("nameInput");
 const emailInput = document.getElementById("emailInput");
 const messageP = document.getElementById("message");
 
+const checkoutTotalSpan = document.getElementById("checkoutTotal");
+
 function updateNavCartCount() {
   const cart = getCart();
   const countEls = document.querySelectorAll(".cartCount");
   countEls.forEach(el => el.textContent = cart.length);
-}
-
-function renderMenu() {
-  if (!menuItemsDiv) return;
-
-  menuItemsDiv.innerHTML = "";
-
-  for (let product of products) {
-    const card = document.createElement("div");
-    card.className = "card";
-
-    card.innerHTML = `
-      <h3>${product.name}</h3>
-      <p>€${product.price.toFixed(2)}</p>
-      <button onclick="addToCart(${product.id})">Add</button>
-    `;
-
-    menuItemsDiv.appendChild(card);
-  }
 }
 
 function addToCart(productId) {
@@ -81,6 +86,16 @@ function renderCart() {
     `;
     cartItemsDiv.appendChild(itemDiv);
   }
+
+  function renderCheckoutTotal() {
+  if (!checkoutTotalSpan) return;
+
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+  checkoutTotalSpan.textContent = total.toFixed(2);
+}
+
 
   cartCountSpan.textContent = cart.length;
   cartTotalSpan.textContent = total.toFixed(2);
@@ -139,3 +154,4 @@ if (checkoutForm) {
 updateNavCartCount();
 renderMenu();
 renderCart();
+renderCheckoutTotal();

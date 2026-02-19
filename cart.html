@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View your selected items and total price in the BrewLab Coffee shopping cart before checkout." />
   <title>BrewLab Coffee - Cart</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -81,6 +82,17 @@ label {
   .grid {
     grid-template-columns: 1fr;
   }
+  * {
+  box-sizing: border-box;
+  }
+  button, a.buttonLink {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
 }
 
 </style>
@@ -95,6 +107,7 @@ label {
     <a href="cart.html">Cart (<span class="cartCount">0</span>)</a>
     <a href="checkout.html">Checkout</a>
   </nav>
+  </div>
 </header>
 
 <main>
