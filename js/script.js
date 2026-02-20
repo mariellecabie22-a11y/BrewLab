@@ -5,6 +5,13 @@ const products = [
   { id: 4, name: "Croissant", price: 2.60, icon: "Images/croissant.png" }
 ];
 
+const sizePrices = { Small: 0, Medium: 0.5, Large: 1.0 };
+const syrupPrices = { None: 0, Vanilla: 0.4, Caramel: 0.4, Hazelnut: 0.4 };
+
+function calculatePrice(basePrice, size, syrup) {
+  return basePrice + sizePrices[size] + syrupPrices[syrup];
+}
+
 function renderMenu() {
   if (!menuItemsDiv) return;
 
@@ -14,14 +21,65 @@ function renderMenu() {
     const card = document.createElement("div");
     card.className = "card";
 
+    const isDrink = product.name !== "Croissant";
+
     card.innerHTML = `
       <h3 class="menuTitle">
         <span>${product.name}</span>
       </h3>
       <img class="menuIcon" src="${product.icon}" alt="${product.name} icon">
       <p>€${product.price.toFixed(2)}</p>
-      <button onclick="addToCart(${product.id})">Add</button>
+
+      ${isDrink ? `
+        <label>
+          Size:
+          <select class="sizeSelect">
+            <option value="Small">Small</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="Large">Large</option>
+          </select>
+        </label>
+
+        <label>
+          Syrup:
+          <select class="syrupSelect">
+            <option value="None" selected>None</option>
+            <option value="Vanilla">Vanilla</option>
+            <option value="Caramel">Caramel</option>
+            <option value="Hazelnut">Hazelnut</option>
+          </select>
+        </label>
+      ` : ""}
+
+      <button class="addBtn">Add</button>
     `;
+
+    const addBtn = card.querySelector(".addBtn");
+
+    addBtn.addEventListener("click", function () {
+
+      let size = "Small";
+      let syrup = "None";
+      let finalPrice = product.price;
+
+      if (isDrink) {
+        const sizeSelect = card.querySelector(".sizeSelect");
+        const syrupSelect = card.querySelector(".syrupSelect");
+
+        size = sizeSelect.value;
+        syrup = syrupSelect.value;
+
+        finalPrice = calculatePrice(product.price, size, syrup);
+      }
+
+      addToCart({
+        id: product.id,
+        name: product.name,
+        size: size,
+        syrup: syrup,
+        price: finalPrice
+      });
+    });
 
     menuItemsDiv.appendChild(card);
   }
@@ -55,16 +113,15 @@ function updateNavCartCount() {
   countEls.forEach(el => el.textContent = cart.length);
 }
 
-function addToCart(productId) {
+function addToCart(item) {
   const cart = getCart();
-  const product = products.find(p => p.id === productId);
-
-  cart.push(product);
+  cart.push(item);
   saveCart(cart);
 
   updateNavCartCount();
   renderCart();
-  alert(product.name + " added to cart!");
+
+  alert(item.name + " added to cart!");
 }
 
 function renderCart() {
@@ -80,9 +137,11 @@ function renderCart() {
 
     const itemDiv = document.createElement("div");
     itemDiv.innerHTML = `
-      ${cart[i].name} - €${cart[i].price.toFixed(2)}
-      <button onclick="removeFromCart(${i})">Remove</button>
-    `;
+  ${cart[i].name}
+  ${cart[i].size && cart[i].syrup ? `(${cart[i].size}, ${cart[i].syrup})` : ""}
+  - €${cart[i].price.toFixed(2)}
+  <button onclick="removeFromCart(${i})">Remove</button>
+`;
     cartItemsDiv.appendChild(itemDiv);
   }
 
