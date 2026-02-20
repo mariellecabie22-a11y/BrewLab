@@ -120,6 +120,7 @@ function addToCart(item) {
 
   updateNavCartCount();
   renderCart();
+  renderCheckoutTotal();
 
   alert(item.name + " added to cart!");
 }
@@ -165,6 +166,7 @@ function removeFromCart(index) {
 
   updateNavCartCount();
   renderCart();
+  renderCheckoutTotal();
 }
 
 if (clearBtn) {
@@ -172,6 +174,7 @@ if (clearBtn) {
     saveCart([]);
     updateNavCartCount();
     renderCart();
+    renderCheckoutTotal();
   });
 }
 
@@ -204,6 +207,8 @@ if (checkoutForm) {
 
     saveCart([]);
     updateNavCartCount();
+    renderCart();
+    renderCheckoutTotal();
     checkoutForm.reset();
   });
 }
